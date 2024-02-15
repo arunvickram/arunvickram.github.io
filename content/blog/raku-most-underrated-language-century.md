@@ -3,7 +3,7 @@ external: false
 draft: false
 title: Raku, possibly the most underrated language of the century
 description: The original successor to the infamous Perl might be a hidden gem of a language.
-date: 2024-02-02
+date: 2024-02-01
 ---
 
 When you say the name "Perl", many older and senior software engineers recoil in absolute horror
