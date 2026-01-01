@@ -10,6 +10,9 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import rakuLang from "./raku.json" assert { type: "json" };
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,10 +23,16 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    remarkPlugins: [
+      remarkMath, // [!code ++]
+      remarkToc,
+      [remarkCollapse, { test: "Table of contents" }],
+    ],
+    rehypePlugins: [rehypeKatex],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
+      themes: { light: "min-light", dark: "ayu-dark" },
+      langs: [rakuLang],
       defaultColor: false,
       wrap: false,
       transformers: [

@@ -3,6 +3,12 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+@theme {
+  --font-mono: "Lilex";
+  --font-prose: "Atkinson Hyperlegible Next";
+  --font-title: "Tiny5"
+}
+
 :root,
 html[data-theme="light"] {
   --background: #fdfdfd;
@@ -15,7 +21,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --background: #212737;
   --foreground: #eaedf3;
-  --accent: #ff6b01;
+  --accent: #ff5f1f;
   --muted: #343f60;
   --border: #ab4b08;
 }
@@ -38,7 +44,7 @@ html[data-theme="dark"] {
     @apply overflow-y-scroll scroll-smooth;
   }
   body {
-    @apply flex min-h-svh flex-col bg-background font-mono text-foreground selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col bg-background font-prose text-foreground selection:bg-accent/75 selection:text-background;
   }
   a,
   button {
@@ -51,6 +57,9 @@ html[data-theme="dark"] {
   section,
   footer {
     @apply mx-auto max-w-app px-4;
+  }
+  .katex-display {
+    @apply text-foreground;
   }
 }
 
