@@ -3,16 +3,16 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
-import {
-  transformerNotationDiff,
-  transformerNotationHighlight,
-  transformerNotationWordHighlight,
-} from "@shikijs/transformers";
+// import {
+//   transformerNotationDiff,
+//   transformerNotationHighlight,
+//   transformerNotationWordHighlight,
+// } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import rakuLang from "./raku.json" assert { type: "json" };
+// import rakuLang from "./raku.json" assert { type: "json" };
 
 // https://astro.build/config
 export default defineConfig({
@@ -32,14 +32,14 @@ export default defineConfig({
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "ayu-dark" },
-      langs: [rakuLang],
+      // langs: [rakuLang],
       defaultColor: false,
       wrap: false,
       transformers: [
         transformerFileName({ style: "v2", hideDot: false }),
-        transformerNotationHighlight(),
-        transformerNotationWordHighlight(),
-        transformerNotationDiff({ matchAlgorithm: "v3" }),
+        // transformerNotationHighlight(),
+        // transformerNotationWordHighlight(),
+        // transformerNotationDiff({ matchAlgorithm: "v3" }),
       ],
     },
   },
