@@ -4,7 +4,7 @@ export const SITE = {
   profile: "https://arunvickram.github.io/",
   desc: "Arun's Rants and Ravings and Thoughts",
   title: "Arun's Corner",
-  ogImage: "ogp.jpg",
+  ogImage: "ogp.png",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,
