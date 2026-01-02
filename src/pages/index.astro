@@ -24,7 +24,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
   <Header />
   <main id="main-content" data-layout="index">
     <section id="hero" class="pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-title uppercase font-bold sm:my-8 sm:text-5xl">
+      <h1
+        class="my-4 inline-block font-title text-4xl tracking-wide uppercase sm:my-8 sm:text-5xl"
+      >
         Arun's Corner
       </h1>
       <a
@@ -63,7 +65,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       featuredPosts.length > 0 && (
         <>
           <section id="featured" class="pt-12 pb-6">
-            <h2 class="text-2xl font-title uppercase font-semibold tracking-wide">Featured</h2>
+            <h2 class="font-title text-2xl tracking-wide uppercase">
+              Featured
+            </h2>
             <ul>
               {featuredPosts.map(data => (
                 <Card variant="h3" {...data} />

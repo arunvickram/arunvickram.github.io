@@ -10,10 +10,9 @@ tags:
   - fully
 # ogImage: ../../assets/images/Camelia-Raku.png # src/assets/images/example.png
 ogImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Camelia.svg/2880px-Camelia.svg.png" # remote URL
-description: Hedging all bets on the success of the language that could
+description: Hedging all bets on the success of the not-so-little language that could.
 # canonicalURL: https://example.org/my-article-was-already-posted-here
 ---
-
 
 [Raku](https://raku.org/) has quickly become my favorite programming language over the past year or so for a number of reasons:
 
@@ -23,8 +22,132 @@ description: Hedging all bets on the success of the language that could
 Raku has one of the most feature-packed standard libraries of any programming language, with basically everything you could possibly need (aside from things like JSON parsing which has several libraries). 
 
 Oh, and you don't have to import *anything*. It's all right there, ready for you whenever you need it.
-### Extensive & Practical Functional Programming Capabilities
-Raku's functional programming capabilities compared to its sister language Perl and its competitors Ruby and Python are a cut above the rest. It has a function composition operator `o`, pipe operators `==>` and `<==` which allow you to define variables at any point during the pipe for debugging purposes, the `.assuming` method which allows you to create partial functions, immutable classes/structs by default, and more.
+### Functional programming
+
+Let's start with examples, cause they speak louder than words. I want you to keep in mind that Raku isn't a language with functional programming as its *principal* feature.
+#### Function Composition
+
+Haskell:
+```haskell
+f x = x + 1
+g x = x + 2
+h = g . f
+```
+
+Clojure: 
+```clojure
+(defn f [x] (inc x))
+(defn g [x] (+ 2 x))
+(def h (comp g f))
+```
+
+Raku:
+```raku
+sub f($x) { $x + 1 } # can also be written as our &f = { $^x + 1 }
+sub g($x) { $x + 2 }
+our &h = &g o &f; # yes, the composition operator in Raku is a lowercase `o`
+```
+
+Some explanations:
+- Raku has this notion of *variable containers* and *sigils* to represent those variable containers, which it inherited from Perl.
+	- Scalar variables are variables that generally hold exactly one thing, and are prefixed with a `$`.
+	- Variables prefixed with `@` such as `@elements` are variables containing multiple values that can be indexed by an integer: essentially these are variables that are a list or array
+	- Variables prefixed with a `%` such as `%dictionary` are associative data types, basically map-like data structures.
+	- Variables prefixed with a `&` are function references. Every time you declare a function in Raku you can reference that function by prefixing it with a `&` like we do with `&f` and `&g`.
+- `our` is a keyword in Raku similar to the variable declarator `my`, but the difference is that it declares a package-level variable rather than a lexically scoped variable. This is in kind of what declaring `sub`s does.
+
+**BONUS:**
+The function `comp` in Clojure is a variadic function that takes any number of functions and returns the composition of all those functions.
+
+```clojure
+(def composed (comp f g h a b c)) ; (composed x) = (f (g (h (a (b (c x))))))
+```
+
+You can actually do the exact same thing in Raku if you wanted:
+
+```raku
+our &composed = [o] &f, &g, &h, &a, &b, &c;
+
+our &composed-2 = ([o] &f, &g, &h, &a, &b, &c) # if you want to make it more lisp-like;
+```
+
+Daniel Sockwell, another fellow Clojurian turned Rakuteer, [wrote a whole article on Raku's surprisingly good Lisp impression](https://www.codesections.com/blog/raku-lisp-impression/)
+
+
+#### Pipe Operators
+
+F#/OCaml:
+```fsharp
+let addBy y x = y + x
+
+let add3 x = 
+    x
+    |> addBy 1
+    |> addBy 2
+```
+
+Clojure:
+```clojure
+(defn add-by [y x] (+ y x))
+
+(defn add3 [x]
+    (->> x
+         (add-by 1)
+         (add-by 2)))
+```
+
+Raku:
+```raku
+sub add_by($y, $x) { $y + $x }
+
+sub add-3($x) {
+    $x ==> add_by 1
+       ==> add_by 2;
+}
+```
+
+> Note: the pipe operator in Raku is called the feed operator.
+
+#### Partial Function Application
+
+Functions are curried by default in languages like Haskell and OCaml/F#. So all function definitions with multiple parameters are by default functions that return functions:
+
+```haskell
+add x y = x + y
+add' = \x -> \y -> x + y -- add' and add are equivalent
+```
+
+This allows you to *partially apply* (not plug in every parameter into) these functions so that you actually return functions that can be used in other functions like `map`.
+
+Clojure (and Lisps in general) and Raku, in contrast, do not take this route: functions require you to pass all parameters by default.
+
+```clojure
+(defn add [x y] (+ x y))
+(defn add' [x] (fn [y] (+ x y))) ; add and add' are not equivalent
+```
+
+```raku
+sub add($x, $y) { $x + $y }
+sub add-curried($x) { -> $y { $x + $y } } # these are not equivalent functions
+```
+
+To compensate for this, Clojure has a function called `partial` which takes a function name and a variable number of arguments and returns a new partially applied function.
+
+```clojure
+(defn add [x y] (+ x y))
+(def add-2 (partial add 2))
+(add-2 3) ; => 5
+```
+
+In Raku, this is achieved through the `.assuming` method and the Whatever star `*`, which is a "variable" (it's complicated) that changes depending on the context. In this case, `*` represents a variable that hasn't been applied yet.
+
+```raku
+sub add($x, $y) { $x + $y }
+our &add-2 = &add.assuming(2, *);
+add-2(3) # => 5
+```
+
+
 ### Multimethods
 Multi-methods/multi-subs. They're incredibly powerful in Elixir and they're extremely powerful here.
 ### Subsets

@@ -1,12 +1,20 @@
 @import "tailwindcss";
 @import "./typography.css";
 
+@font-face {
+  font-family: "Monocraft";
+  src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Monocraft@main/dist/Monocraft-ttf/Monocraft.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
   --font-mono: "Lilex";
   --font-prose: "Atkinson Hyperlegible Next";
-  --font-title: "Tiny5"
+  --font-title: "Jersey 10";
 }
 
 :root,
