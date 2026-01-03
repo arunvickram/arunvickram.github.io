@@ -30,9 +30,9 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --background: #000000;
   --foreground: #eaedf3;
-  --accent: #ff5f1f;
-  --muted: #343f60;
-  --border: #ab4b08;
+  --accent: oklch(64.5% 0.246 16.439);
+  --muted: oklch(41% 0.159 10.272);
+  --border: oklch(51.4% 0.222 16.935);
 }
 
 @theme inline {
