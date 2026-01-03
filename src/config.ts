@@ -1,7 +1,7 @@
 export const SITE = {
-  website: "https://arunvickram.github.io/", // replace this with your deployed domain
+  website: "https://arunvickram.com/about", // replace this with your deployed domain
   author: "Arun Vickram",
-  profile: "https://arunvickram.github.io/",
+  profile: "https://arunvickram.com/about",
   desc: "Arun's Rants and Ravings and Thoughts",
   title: "Arun's Corner",
   ogImage: "ogp.png",
@@ -12,7 +12,7 @@ export const SITE = {
   showArchives: true,
   showBackButton: true, // show back button in post detail
   editPost: {
-    enabled: true,
+    enabled: false,
     text: "Edit page",
     url: "https://github.com/satnaing/astro-paper/edit/main/",
   },
