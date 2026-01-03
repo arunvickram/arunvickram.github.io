@@ -31,7 +31,7 @@ Oh, that's right. It literally turned into a fire hazard. If traffic gets jammed
 
 The Katy Freeway in Houston is a perfect example of how just building more of the same thing doesn't always solve the problem. That highway is the largest in the US with twelve lanes in each direction.
 
-<iframe width="720" height="480" src="https://www.youtube.com/embed/qrV_OrQMiBE" title="WTH?! The Katy Freeway massive traffic nightmare" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="480" height="360" src="https://www.youtube.com/embed/qrV_OrQMiBE" title="WTH?! The Katy Freeway massive traffic nightmare" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 The common thread between the Javascript ecosystem churn and techno-optimism is the "solutions" we're seeing are symptoms of far more systemic issues. It's the absence of workers' rights thus leading to the extreme fungibility of software engineers. It’s the pressure in a competitive job market to build the "next best thing" so that employers will hire based on their Github. It’s employers kidnapping the engineer away from the work on those very projects that end up languishing in tech debt. This is an **utter mockery** of the free spirit of open source; companies are merely treating the open source ecosystem as a way of siphoning engineering talent away from said ecosystem. 
 
